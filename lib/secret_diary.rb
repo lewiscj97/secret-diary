@@ -1,3 +1,5 @@
+require_relative 'diary_entry'
+
 class SecretDiary
   def initialize
     @locked = true
@@ -19,14 +21,14 @@ class SecretDiary
 
   def add_entry(date, entry)
     raise "Diary is locked" if @locked
-    @entries << [date, entry]
+    @entries << DiaryEntry.new(date, entry)
     "Entry added"
   end
 
   def get_entries
     raise "Diary is locked" if @locked
     @entries.each do |entry|
-      puts "Date: #{entry[0]}, Entry: #{entry[1]}"
+      puts entry.stringify
     end
   end
 end
