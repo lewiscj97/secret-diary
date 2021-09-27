@@ -1,9 +1,11 @@
 require_relative 'diary_entry'
 require_relative 'diary_security'
+require_relative 'diary_reader'
 
 class SecretDiary
   def initialize
     @security = DiarySecurity.new
+    @reader = DiaryReader.new
     @entries = []
   end
 
@@ -24,7 +26,7 @@ class SecretDiary
 
   def get_entries
     raise "Diary is locked" if locked?
-    @entries.each {|entry| puts entry.stringify}
+    @reader.read(@entries)
     "Entries"
   end
 
