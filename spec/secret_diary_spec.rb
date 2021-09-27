@@ -4,7 +4,7 @@ require 'diary_security'
 describe SecretDiary do
   before(:each) {
     security = DiarySecurity.new
-    @subject = SecretDiary.new(security)
+    @subject = SecretDiary.new
   }
 
   describe "#add_entry" do
