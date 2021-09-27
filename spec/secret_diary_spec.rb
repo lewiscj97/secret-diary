@@ -22,4 +22,11 @@ describe SecretDiary do
       end
     end
   end
+
+  describe "#unlock" do
+    it "unlocks the diary" do
+      subject.unlock
+      expect(subject.status).to eq "unlocked"
+    end
+  end
 end
