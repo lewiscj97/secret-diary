@@ -44,4 +44,10 @@ describe SecretDiary do
       expect(subject.status).to eq "unlocked"
     end
   end
+
+  describe "#lock" do
+    it "doesn't let the user lock the diary again" do
+      expect { subject.lock }.to raise_error "Diary is already locked"
+    end
+  end
 end
