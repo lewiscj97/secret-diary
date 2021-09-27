@@ -1,32 +1,28 @@
 require_relative 'diary_entry'
 
 class SecretDiary
-  def initialize
-    @locked = true
+  def initialize(security)
+    @security = security
     @entries = []
   end
 
-  def status
-    @locked ? "locked" : "unlocked"
-  end
-
   def unlock
-    @locked = false
+    @security.unlock
   end
 
   def lock
     raise "Diary is already locked" if @locked
-    @locked = true
+    @security.lock
   end
 
   def add_entry(date, entry)
-    raise "Diary is locked" if @locked
+    raise "Diary is locked" if @security.status == "locked"
     @entries << DiaryEntry.new(date, entry)
     "Entry added"
   end
 
   def get_entries
-    raise "Diary is locked" if @locked
+    raise "Diary is locked" if @security.status == "locked"
     @entries.each do |entry|
       puts entry.stringify
     end
