@@ -14,6 +14,7 @@ class SecretDiary
 
   def lock
     raise "Diary is already locked" if @locked
+    @locked = true
   end
 
   def add_entry(date, entry)
