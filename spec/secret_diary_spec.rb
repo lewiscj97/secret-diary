@@ -10,7 +10,7 @@ describe SecretDiary do
   describe "#add_entry" do
     context "diary is locked" do
       it "does not let the user add an entry" do
-        expect { subject.add_entry }.to raise_error "Diary is locked"
+        expect { subject.add_entry("date", "entry") }.to raise_error "Diary is locked"
       end
     end
 
@@ -18,7 +18,7 @@ describe SecretDiary do
       it "lets the user add an entry" do
         subject.unlock
         subject.add_entry("27/09/21", "Today is a Monday")
-        expect { subject.get_entries }.to eq "Date: 27/09/21, Entry: Today is a Monday"
+        expect (subject.get_entries).to eq "Date: 27/09/21, Entry: Today is a Monday"
       end
     end
   end
