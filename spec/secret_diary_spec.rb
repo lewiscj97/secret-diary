@@ -14,4 +14,12 @@ describe SecretDiary do
       end
     end
   end
+
+  describe "#get_entries" do
+    context "diary is locked" do
+      it "does not let the user get entries" do
+        expect { subject.get_entries }.to raise_error "Diary is locked"
+      end
+    end
+  end
 end
