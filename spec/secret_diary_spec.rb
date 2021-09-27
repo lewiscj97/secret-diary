@@ -17,8 +17,7 @@ describe SecretDiary do
     context "diary is unlocked" do
       it "lets the user add an entry" do
         subject.unlock
-        subject.add_entry("27/09/21", "Today is a Monday")
-        expect { subject.get_entries }.to output("Date: 27/09/21, Entry: Today is a Monday\n").to_stdout
+        expect(subject.add_entry("27/09/21", "Today is a Monday")).to eq "Entry added"
       end
     end
   end
@@ -27,6 +26,14 @@ describe SecretDiary do
     context "diary is locked" do
       it "does not let the user get entries" do
         expect { subject.get_entries }.to raise_error "Diary is locked"
+      end
+    end
+
+    context "diary is unlocked" do
+      it "prints the entries to the console" do
+        subject.unlock
+        subject.add_entry("27/09/21", "Today is a Monday")
+        expect { subject.get_entries }.to output("Date: 27/09/21, Entry: Today is a Monday\n").to_stdout
       end
     end
   end
