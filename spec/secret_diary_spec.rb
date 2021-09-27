@@ -18,7 +18,7 @@ describe SecretDiary do
       it "lets the user add an entry" do
         subject.unlock
         subject.add_entry("27/09/21", "Today is a Monday")
-        expect (subject.get_entries).to eq "Date: 27/09/21, Entry: Today is a Monday"
+        expect { subject.get_entries }.to output("Date: 27/09/21, Entry: Today is a Monday\n").to_stdout
       end
     end
   end

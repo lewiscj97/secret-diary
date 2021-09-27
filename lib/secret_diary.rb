@@ -1,6 +1,7 @@
 class SecretDiary
   def initialize
     @locked = true
+    @entries = []
   end
 
   def status
@@ -11,11 +12,15 @@ class SecretDiary
     @locked = false
   end
 
-  def add_entry
+  def add_entry(date, entry)
     raise "Diary is locked" if @locked
+    @entries << [date, entry]
   end
 
   def get_entries
     raise "Diary is locked" if @locked
+    @entries.each do |entry|
+      puts "Date: #{entry[0]}, Entry: #{entry[1]}"
+    end
   end
 end
