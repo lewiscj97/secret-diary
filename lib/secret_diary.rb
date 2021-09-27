@@ -10,4 +10,8 @@ class SecretDiary
   def add_entry
     raise "Diary is locked" if @locked
   end
+
+  def get_entries
+    raise "Diary is locked" if @locked
+  end
 end
