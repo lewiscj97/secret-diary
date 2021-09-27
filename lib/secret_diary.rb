@@ -7,6 +7,10 @@ class SecretDiary
     @locked ? "locked" : "unlocked"
   end
 
+  def unlock
+    @locked = false
+  end
+
   def add_entry
     raise "Diary is locked" if @locked
   end
