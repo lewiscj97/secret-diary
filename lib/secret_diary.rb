@@ -6,21 +6,23 @@ class SecretDiary
   def initialize
     @security = DiarySecurity.new
     @reader = DiaryReader.new
+    @entry_class = DiaryEntry
+    @locked = true
     @entries = []
   end
 
   def unlock
-    @security.unlock
+    @locked = @security.unlock
   end
 
   def lock
     raise "Diary is already locked" if @locked
-    @security.lock
+    @locked = @security.lock
   end
 
   def add_entry(date, entry)
     raise "Diary is locked" if locked?
-    @entries << DiaryEntry.new(date, entry)
+    @entries << @entry_class.new(date, entry)
     "Entry added"
   end
 
@@ -33,6 +35,6 @@ class SecretDiary
   private
 
   def locked?
-    @security.status == "locked"
+    @locked == true
   end
 end
