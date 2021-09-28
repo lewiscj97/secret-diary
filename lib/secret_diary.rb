@@ -16,7 +16,7 @@ class SecretDiary
   end
 
   def lock
-    raise "Diary is already locked" if @locked
+    raise "Diary is already locked" if locked?
     @locked = @security.lock
   end
 
@@ -35,6 +35,6 @@ class SecretDiary
   private
 
   def locked?
-    @locked == true
+    @locked
   end
 end
